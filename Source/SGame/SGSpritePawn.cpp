@@ -43,7 +43,7 @@ void ASGSpritePawn::Tick( float DeltaTime )
 	Super::Tick( DeltaTime );
 }
 
-void ASGSpritePawn::HandlePlayerTakeDamage(const FMessage_Gameplay_PlayerTakeDamage& Message, const IMessageContextRef& Context)
+void ASGSpritePawn::HandlePlayerTakeDamage(const FMessage_Gameplay_PlayerTakeDamage& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	// todo: Add armor damage calculation
 	CurrentHP = CurrentHP - Message.DirectDamage;
@@ -52,7 +52,7 @@ void ASGSpritePawn::HandlePlayerTakeDamage(const FMessage_Gameplay_PlayerTakeDam
 	OnPlayHitAniamtion();
 }
 
-void ASGSpritePawn::HandleCollectResouce(const FMessage_Gameplay_ResourceCollect& Message, const IMessageContextRef& Context)
+void ASGSpritePawn::HandleCollectResouce(const FMessage_Gameplay_ResourceCollect& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	CurrentHP += Message.SummupResouces[static_cast<int32>(ESGResourceType::ETR_HP)];
 	FMath::Clamp(CurrentHP, 0, HPMax);

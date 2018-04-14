@@ -45,7 +45,7 @@ void ASGPlayerController::BeginPlay()
 	}
 }
 
-void ASGPlayerController::HandlePlayerBeginInput(const FMessage_Gameplay_PlayerBeginInput& Message, const IMessageContextRef& Context)
+void ASGPlayerController::HandlePlayerBeginInput(const FMessage_Gameplay_PlayerBeginInput& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	UE_LOG(LogSGame, Log, TEXT("Player begin input"));
 }

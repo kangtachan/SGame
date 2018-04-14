@@ -99,7 +99,7 @@ void ASGGameMode::OnBeginRound()
 	}
 }
 
-void ASGGameMode::HandleCollectLinkLine(const FMessage_Gameplay_CollectLinkLine& Message, const IMessageContextRef& Context)
+void ASGGameMode::HandleCollectLinkLine(const FMessage_Gameplay_CollectLinkLine& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	checkSlow(CurrentLinkLine != nullptr);
 
@@ -283,7 +283,7 @@ bool ASGGameMode::IsLinkLineValid()
 	return false;
 }
 
-void ASGGameMode::HandleBeginAttack(const FMessage_Gameplay_EnemyBeginAttack& Message, const IMessageContextRef& Context)
+void ASGGameMode::HandleBeginAttack(const FMessage_Gameplay_EnemyBeginAttack& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	float ShiledDamage = 0;
 	float DirectDamage = 0;
@@ -476,7 +476,7 @@ ASGSkillBase* ASGGameMode::CreatePlayerSkilkByName(FString inSkillName)
 	return PlayerSkillManager->CreateSkillByName(this, inSkillName);
 }
 
-void ASGGameMode::HandleGameStart(const FMessage_Gameplay_GameStart& Message, const IMessageContextRef& Context)
+void ASGGameMode::HandleGameStart(const FMessage_Gameplay_GameStart& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	UE_LOG(LogSGameProcedure, Log, TEXT("Game start!"));
 
@@ -488,7 +488,7 @@ void ASGGameMode::HandleGameStart(const FMessage_Gameplay_GameStart& Message, co
 	
 }
 
-void ASGGameMode::HandleGameStatusUpdate(const FMessage_Gameplay_GameStatusUpdate& Message, const IMessageContextRef& Context)
+void ASGGameMode::HandleGameStatusUpdate(const FMessage_Gameplay_GameStatusUpdate& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	CurrentGameGameStatus = Message.NewGameStatus;
 	switch (CurrentGameGameStatus)
@@ -529,7 +529,7 @@ void ASGGameMode::HandleGameStatusUpdate(const FMessage_Gameplay_GameStatusUpdat
 	}
 }
 
-void ASGGameMode::HandleAllTileFinishMoving(const FMessage_Gameplay_AllTileFinishMove& Message, const IMessageContextRef& Context)
+void ASGGameMode::HandleAllTileFinishMoving(const FMessage_Gameplay_AllTileFinishMove& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	if (CurrentGameGameStatus == ESGGameStatus::EGS_PlayerEndInput)
 	{
@@ -557,7 +557,7 @@ void ASGGameMode::OnEnemyAttackStage()
 	MessageEndpoint->Publish(GameStatusUpdateMesssage, EMessageScope::Process);
 }
 
-void ASGGameMode::HandleNewTileIsPicked(const FMessage_Gameplay_NewTilePicked& Message, const IMessageContextRef& Context)
+void ASGGameMode::HandleNewTileIsPicked(const FMessage_Gameplay_NewTilePicked& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	UE_LOG(LogSGame, Log, TEXT("Player Build Path with TileID: %d"), Message.TileID);
 

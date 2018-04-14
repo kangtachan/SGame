@@ -3,7 +3,7 @@
 #pragma once
 
 #include "GameFramework/CheatManager.h"
-#include "Messaging.h"
+#include "MessageEndpoint.h"
 #include "SGameMessages.h"
 #include "SGCheatManager.generated.h"
 
@@ -52,5 +52,5 @@ public:
 private:
 
 	// Holds the messaging endpoint.
-	FMessageEndpointPtr MessageEndpoint;
+	TSharedPtr<FMessageEndpoint, ESPMode::ThreadSafe> MessageEndpoint;
 };

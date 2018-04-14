@@ -423,7 +423,7 @@ bool ASGGrid::IsThreePointsSameLine(int32 Point1, int32 Point2, int32 Point3)
 	return ((Point1 - Point2) * (Point1 % GridWidth - Point3 % GridWidth) == (Point1 - Point3) * (Point1 % GridWidth - Point2 % GridWidth));
 }
 
-void ASGGrid::HandleTileArrayCollect(const FMessage_Gameplay_LinkedTilesCollect& Message, const IMessageContextRef& Context)
+void ASGGrid::HandleTileArrayCollect(const FMessage_Gameplay_LinkedTilesCollect& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	for (int i = 0; i < Message.TilesAddressToCollect.Num(); i++)
 	{
@@ -446,14 +446,14 @@ void ASGGrid::HandleTileArrayCollect(const FMessage_Gameplay_LinkedTilesCollect&
 	Condense();
 }
 
-void ASGGrid::HandleTileBeginMove(const FMessage_Gameplay_TileBeginMove& Message, const IMessageContextRef& Context)
+void ASGGrid::HandleTileBeginMove(const FMessage_Gameplay_TileBeginMove& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	checkSlow(CurrentFallingTileNum >= 0);
 
 	CurrentFallingTileNum++;
 }
 
-void ASGGrid::HandleTileEndMove(const FMessage_Gameplay_TileEndMove& Message, const IMessageContextRef& Context)
+void ASGGrid::HandleTileEndMove(const FMessage_Gameplay_TileEndMove& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	checkSlow(CurrentFallingTileNum > 0);
 

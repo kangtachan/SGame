@@ -3,7 +3,8 @@
 #pragma once
 
 #include "GameFramework/PlayerController.h"
-#include "Messaging.h"
+#include "MessageEndpoint.h"
+#include "MessageEndpointBuilder.h"
 #include "SGameMessages.h"
 #include "SGSkillBase.h"
 #include "SGPlayerSkillManager.h"
@@ -35,8 +36,8 @@ protected:
 
 private:
 	/** Player can input now*/
-	void HandlePlayerBeginInput(const FMessage_Gameplay_PlayerBeginInput& Message, const IMessageContextRef& Context);
+	void HandlePlayerBeginInput(const FMessage_Gameplay_PlayerBeginInput& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	// Holds the messaging endpoint.
-	FMessageEndpointPtr MessageEndpoint;
+	TSharedPtr<FMessageEndpoint, ESPMode::ThreadSafe> MessageEndpoint;
 };
