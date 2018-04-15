@@ -148,7 +148,7 @@ TArray<FTileResourceUnit> ASGTileBase::GetTileResource() const
 	return Data.TileResourceArray;
 }
 
-void ASGTileBase::HandleTileCollected(const FMessage_Gameplay_TileCollect& Message, const IMessageContextRef& Context)
+void ASGTileBase::HandleTileCollected(const FMessage_Gameplay_TileCollect& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	FILTER_MESSAGE;
 
@@ -219,7 +219,7 @@ void ASGTileBase::OnTweenCompleteNative(AiTweenEvent* eventOperator, AActor* act
 	}
 }
 
-void ASGTileBase::HandleTakeDamage(const FMessage_Gameplay_DamageToTile& Message, const IMessageContextRef& Context)
+void ASGTileBase::HandleTakeDamage(const FMessage_Gameplay_DamageToTile& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	FILTER_MESSAGE;
 
@@ -244,7 +244,7 @@ void ASGTileBase::HandleTakeDamage(const FMessage_Gameplay_DamageToTile& Message
 	}
 }
 
-void ASGTileBase::HandleSelectableStatusChange(const FMessage_Gameplay_TileSelectableStatusChange& Message, const IMessageContextRef& Context)
+void ASGTileBase::HandleSelectableStatusChange(const FMessage_Gameplay_TileSelectableStatusChange& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	FILTER_MESSAGE;
 
@@ -268,7 +268,7 @@ void ASGTileBase::HandleSelectableStatusChange(const FMessage_Gameplay_TileSelec
 	}
 }
 
-void ASGTileBase::HandleLinkStatusChange(const FMessage_Gameplay_TileLinkedStatusChange& Message, const IMessageContextRef& Context)
+void ASGTileBase::HandleLinkStatusChange(const FMessage_Gameplay_TileLinkedStatusChange& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	FILTER_MESSAGE;
 
@@ -292,7 +292,7 @@ void ASGTileBase::HandleLinkStatusChange(const FMessage_Gameplay_TileLinkedStatu
 	}
 }
 
-void ASGTileBase::HandleTileMove(const FMessage_Gameplay_TileBeginMove& Message, const IMessageContextRef& Context)
+void ASGTileBase::HandleTileMove(const FMessage_Gameplay_TileBeginMove& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	FILTER_MESSAGE;
 

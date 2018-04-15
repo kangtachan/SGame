@@ -3,8 +3,8 @@
 #pragma once
 
 #include "GameFramework/GameMode.h"
-#include "Messaging.h"
-
+#include "MessageEndpoint.h"
+#include "MessageEndpointBuilder.h"
 #include "SGTileBase.h"
 #include "SGameMessages.h"
 #include "SGLinkLine.h"
@@ -141,28 +141,28 @@ protected:
 	TArray<FTileDamageInfo> CaculateLinkLineDamage(TArray<ASGTileBase*>& CauseDamageTiles);
 private:
 	/** Handles Game start messages. */
-	void HandleGameStart(const FMessage_Gameplay_GameStart& Message, const IMessageContextRef& Context);
+	void HandleGameStart(const FMessage_Gameplay_GameStart& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	/** Handles the game status update messages. */
-	void HandleGameStatusUpdate(const FMessage_Gameplay_GameStatusUpdate& Message, const IMessageContextRef& Context);
+	void HandleGameStatusUpdate(const FMessage_Gameplay_GameStatusUpdate& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	/** Handle all tile has finish moving message, push the game procesdure to next stage */
-	void HandleAllTileFinishMoving(const FMessage_Gameplay_AllTileFinishMove& Message, const IMessageContextRef& Context);
+	void HandleAllTileFinishMoving(const FMessage_Gameplay_AllTileFinishMove& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	/** Handle begin attack event*/
-	void HandleBeginAttack(const FMessage_Gameplay_EnemyBeginAttack& Message, const IMessageContextRef& Context);
+	void HandleBeginAttack(const FMessage_Gameplay_EnemyBeginAttack& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	/** Handle collect the link line*/
-	void HandleCollectLinkLine(const FMessage_Gameplay_CollectLinkLine& Message, const IMessageContextRef& Context);
+	void HandleCollectLinkLine(const FMessage_Gameplay_CollectLinkLine& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	/** Handles the player picked new tile*/
-	void HandleNewTileIsPicked(const FMessage_Gameplay_NewTilePicked& Message, const IMessageContextRef& Context);
+	void HandleNewTileIsPicked(const FMessage_Gameplay_NewTilePicked& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	/** Current game status for this mode*/
 	ESGGameStatus CurrentGameGameStatus;
 
 	// Holds the messaging endpoint.
-	FMessageEndpointPtr MessageEndpoint;
+	TSharedPtr<FMessageEndpoint, ESPMode::ThreadSafe> MessageEndpoint;
 
 	/** Current round number*/
 	int32				CurrentRound;

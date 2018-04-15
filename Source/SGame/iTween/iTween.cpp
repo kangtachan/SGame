@@ -29,8 +29,16 @@ AiTweenEvent* UiTween::SpawnEvent(AiTAux* aux)
 			AiTweenEvent* ie = nullptr;
 
 			params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-
-			ie = world->SpawnActor<AiTweenEvent>(AiTweenEvent::StaticClass(), GetWorldLocal()->GetFirstPlayerController()->GetActorTransform(), params);
+			APawn* Pawn = UGameplayStatics::GetPlayerPawn(world, 0);
+			
+			if (Pawn != nullptr)
+			{
+				ie = world->SpawnActor<AiTweenEvent>(AiTweenEvent::StaticClass(), Pawn->GetActorTransform(), params);
+			}
+			else
+			{
+				ie = world->SpawnActor<AiTweenEvent>(AiTweenEvent::StaticClass(), params);
+			}
 
 			ie->tweenIndex = (aux->currentTweens.Add(ie));
 

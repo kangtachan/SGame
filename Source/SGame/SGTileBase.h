@@ -5,7 +5,7 @@
 #include "PaperSprite.h"
 #include "PaperSpriteActor.h"
 #include "GameFramework/Actor.h"
-#include "Messaging.h"
+#include "MessageEndpoint.h"
 #include "SGameMessages.h"
 #include "iTween/iTInterface.h"
 
@@ -227,23 +227,23 @@ private:
 	// Holds the messaging endpoint.
 	// Note that we don't want the sub class inherited this member,
 	// because every message handler should explicitly handled by itself class
-	FMessageEndpointPtr MessageEndpoint;
+	TSharedPtr<FMessageEndpoint, ESPMode::ThreadSafe> MessageEndpoint;
 
 	/** Handles tile become selectalbe */
-	void HandleSelectableStatusChange(const FMessage_Gameplay_TileSelectableStatusChange& Message, const IMessageContextRef& Context);
+	void HandleSelectableStatusChange(const FMessage_Gameplay_TileSelectableStatusChange& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	/** Handles tile become selectalbe */
-	void HandleLinkStatusChange(const FMessage_Gameplay_TileLinkedStatusChange& Message, const IMessageContextRef& Context);
+	void HandleLinkStatusChange(const FMessage_Gameplay_TileLinkedStatusChange& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	/** Handles tile become selectalbe */
-	void HandleTileMove(const FMessage_Gameplay_TileBeginMove& Message, const IMessageContextRef& Context);
+	void HandleTileMove(const FMessage_Gameplay_TileBeginMove& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	/** Handle tile collected */
-	void HandleTileCollected(const FMessage_Gameplay_TileCollect& Message, const IMessageContextRef& Context);
+	void HandleTileCollected(const FMessage_Gameplay_TileCollect& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	/** Handle tile linked */
-	void HandleTileLinked(const FMessage_Gameplay_TileCollect& Message, const IMessageContextRef& Context);
+	void HandleTileLinked(const FMessage_Gameplay_TileCollect& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	/** Handle take damage message */
-	void HandleTakeDamage(const FMessage_Gameplay_DamageToTile& Message, const IMessageContextRef& Context);
+	void HandleTakeDamage(const FMessage_Gameplay_DamageToTile& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 };

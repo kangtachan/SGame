@@ -79,12 +79,12 @@ void ASGEnemyTileBase::BeginPlay()
 	Text_Attack->SetText(FText::AsNumber(Data.CauseDamageInfo.InitialDamage));
 }
 
-void ASGEnemyTileBase::HandleBeginAttack(const FMessage_Gameplay_EnemyBeginAttack& Message, const IMessageContextRef& Context)
+void ASGEnemyTileBase::HandleBeginAttack(const FMessage_Gameplay_EnemyBeginAttack& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	EnemyAttack();
 }
 
-void ASGEnemyTileBase::HandlePlayHit(const FMessage_Gameplay_EnemyGetHit& Message, const IMessageContextRef& Context)
+void ASGEnemyTileBase::HandlePlayHit(const FMessage_Gameplay_EnemyGetHit& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context)
 {
 	FILTER_MESSAGE;
 	BeginPlayHit();

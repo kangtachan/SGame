@@ -5,7 +5,8 @@
 #include "GameFramework/Actor.h"
 
 #include "SGTileBase.h"
-#include "Messaging.h"
+#include "MessageEndpoint.h"
+#include "MessageEndpointBuilder.h"
 #include "SGameMessages.h"
 #include "SGLevelTileManager.h"
 #include "SGLinkLine.h"
@@ -149,16 +150,16 @@ protected:
 	ASGLevelTileManager* LevelTileManager;
 private:
 	// Holds the messaging endpoint.
-	FMessageEndpointPtr MessageEndpoint;
+	TSharedPtr<FMessageEndpoint, ESPMode::ThreadSafe> MessageEndpoint;
 
 	/** Handle tile grid event*/
-	void HandleTileArrayCollect(const FMessage_Gameplay_LinkedTilesCollect& Message, const IMessageContextRef& Context);
+	void HandleTileArrayCollect(const FMessage_Gameplay_LinkedTilesCollect& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	/** Handle when some tile begin move, just increase the count*/
-	void HandleTileBeginMove(const FMessage_Gameplay_TileBeginMove& Message, const IMessageContextRef& Context);
+	void HandleTileBeginMove(const FMessage_Gameplay_TileBeginMove& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	/** Handle when some tile end move, just decrease the count*/
-	void HandleTileEndMove(const FMessage_Gameplay_TileEndMove& Message, const IMessageContextRef& Context);
+	void HandleTileEndMove(const FMessage_Gameplay_TileEndMove& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	void UpdateTileSelectState();
 	void UpdateTileLinkState();

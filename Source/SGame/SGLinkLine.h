@@ -5,7 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "PaperSprite.h"
 #include "PaperSpriteComponent.h"
-#include "Messaging.h"
+#include "MessageEndpoint.h"
 
 #include "SGameMessages.h"
 #include "SGTileBase.h"
@@ -219,7 +219,7 @@ private:
 	int								m_LastAngle;
 
 	// Holds the messaging endpoint.
-	FMessageEndpointPtr MessageEndpoint;
+	TSharedPtr<FMessageEndpoint, ESPMode::ThreadSafe> MessageEndpoint;
 
 	// Hold the reference to its parent grid
 	ASGGrid* ParentGrid;

@@ -72,11 +72,11 @@ private:
 	// Noted that this class may have two message endpoint, 
 	// one for its parent messages and handlers, and 
 	// one for itself
-	FMessageEndpointPtr MessageEndpoint;
+	TSharedPtr<FMessageEndpoint, ESPMode::ThreadSafe> MessageEndpoint;
 
 	/** Handle begin attack message */
-	void HandleBeginAttack(const FMessage_Gameplay_EnemyBeginAttack& Message, const IMessageContextRef& Context);
+	void HandleBeginAttack(const FMessage_Gameplay_EnemyBeginAttack& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	/** Handle play hit animation and effects */
-	void HandlePlayHit(const FMessage_Gameplay_EnemyGetHit& Message, const IMessageContextRef& Context);
+	void HandlePlayHit(const FMessage_Gameplay_EnemyGetHit& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 };

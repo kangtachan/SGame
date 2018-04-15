@@ -4,7 +4,8 @@
 
 #include "PaperSpriteComponent.h"
 #include "GameFramework/Pawn.h"
-#include "Messaging.h"
+#include "MessageEndpoint.h"
+#include "MessageEndpointBuilder.h"
 #include "SGameMessages.h"
 
 #include "SGSpritePawn.generated.h"
@@ -52,15 +53,15 @@ protected:
 	void OnPlayHitAniamtion();
 
 	/** Handles the player picked new tile*/
-	void HandlePlayerTakeDamage(const FMessage_Gameplay_PlayerTakeDamage& Message, const IMessageContextRef& Context);
+	void HandlePlayerTakeDamage(const FMessage_Gameplay_PlayerTakeDamage& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 	/** Handles collect resouce*/
-	void HandleCollectResouce(const FMessage_Gameplay_ResourceCollect& Message, const IMessageContextRef& Context);
+	void HandleCollectResouce(const FMessage_Gameplay_ResourceCollect& Message, const TSharedRef<IMessageContext, ESPMode::ThreadSafe>& Context);
 
 private:
 	UPROPERTY(Category = Sprite, VisibleAnywhere, BlueprintReadOnly, meta = (ExposeFunctionCategories = "Sprite,Rendering,Physics,Components|Sprite", AllowPrivateAccess = "true"))
 	class UPaperSpriteComponent* RenderComponent;
 
 	// Holds the messaging endpoint.
-	FMessageEndpointPtr MessageEndpoint;
+	TSharedPtr<FMessageEndpoint, ESPMode::ThreadSafe> MessageEndpoint;
 };
